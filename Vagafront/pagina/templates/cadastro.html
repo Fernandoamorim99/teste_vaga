@@ -1,12 +1,50 @@
 {% extends 'base.html' %}
 
+{% if msg %}
+
+{% endif %}
+
+
 {% block title %} Cadastro {% endblock %}
 
 {%block content %}
-    <div class= "offset-1 col-10 list-div">
-        <h1>Novo Usuário</h1>
-        <div class="col-2 add-div">
-            <i class='fas fa-plus'></i> Adicionar Usuário
-        </div>
+
+    <div id="main-container">
+        <h1>Cadastro de novo paciente</h1>
+        <form id="register-form" action="{% url 'cadastro' %}" method="post">
+            {% csrf_token %}
+            <div class="full-box">
+                <label for="email">E-mail</label>
+                <input id="email" type="email" name="email" autocomplete="off" placeholder="Digite seu E-mail">
+            </div>
+            <div class="full-box">
+                <label for="name">Nome</label>
+                <input id="name" type="text" name="name" autocomplete="off" placeholder="Digite seu nome completo">
+            </div>
+            <div class="half-box">
+                <label for="cpf">CPF</label>
+                <input id="cpf" type="text" name="cpf" autocomplete="off" placeholder="Digite seu CPF">
+            </div>
+            <div class="half-box">
+                <label for="cpf">Telefone</label>
+                <input id="phone" type="text" name="phone" autocomplete="off" placeholder="Digite seu Telefone">
+            </div>
+            <div class="half-box spacing">
+                <label for="password">Senha</label>
+                <input id="password" type="password" name="password" autocomplete="off" placeholder="Digite a sua senha">
+            </div>
+            <div class="half-box spacing">
+                <label for="passconfirm">Senha</label>
+                <input id="passconfirm" type="password" name="passconfirm" autocomplete="off" placeholder="Confirme a sua senha">
+            </div>
+             <div class="full-box">
+                <input id="agreement" type="checkbox" name="agreement">
+                <label for="agreement" id="agreement-label">Eu li e aceito os <a href="#"</a>termos de uso.</label>
+            </div>
+            <div class="full-box">
+                <input id="btn-submit" type="submit" value="Registrar">
+            </div>
+        </form>
     </div>
+    <p class="error-validation template"></p>
 {% endblock %}

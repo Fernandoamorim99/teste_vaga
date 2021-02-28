@@ -1,7 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %} Usuarios {% endblock %}
+{% block title %} Pacientes {% endblock %}
 
 {%block content %}
- <h1>Usuarios</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<center><div class="container">
+    <table class="bordered centered table table-success table-striped">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Telefone</th>
+        </tr>
+        <tbody>
+            {% for user in data %}
+                <tr>
+                    <td scope="row">{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div></center>
 {% endblock %}
