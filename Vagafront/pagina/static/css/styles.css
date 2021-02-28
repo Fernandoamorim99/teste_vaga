@@ -95,69 +95,56 @@ input[type="submit"]{
     display: inline-block;
     width: auto;
 }
-/* Validações*/
 
-.error-validation{
-    color: #FF1A1A;
-    position: absolute;
-    top: 57px;
-    font-size: .8rem;
+/* Footer */
+
+#contact-area {
+    background-color: #fff;
+	text-align: center;
+    border: none;
+    border-radius: 20px;
 }
 
-.template{
-    display: none;
-}
-/* Barra de navegação*/
-
-.navbar {
-    border-bottom: 1px solid cadetblue;
-    margin-bottom: 20px;
+.contact-box {
+	padding-bottom: 50px;
+	margin-bottom: 50px;
+	border-bottom: 1px solid #3EC1D5;
 }
 
-.navbar-nav {
-    margin: auto;
+.contact-box i {
+	color: #444;
+	border: solid 1px #444;
+	border-radius: 50%;
+	width: 55px;
+	height: 55px;
+	line-height: 55px;
+	font-size: 24px;
+	margin-bottom: 20px;
 }
 
-.navbar-brand {
-    font-weight: bold;
+.contact-box p {
+	font-size: 16px;
 }
 
-.navbar-light .navbar-nav a.navbar-link {
-    color: darkblue;
-    letter-spacing: 1px;
-}
-/* Lista de Usuários*/
-
-.list-div{
-    padding: 0;
+.contact-tile {
+	font-weight: bold;
+	color: #3EC1D5;
 }
 
-.task-list{
-    padding-left: 0;
+#msg-box p {
+	font-size: 22px;
 }
 
-.task-item{
-    list-style: none;
-    font-size: 20px;
-    height: 50px;
-    padding-top: 10px;
-    border: 1px dashed;
+#contact-form input[type="text"], #contact-form textarea {
+	margin-bottom: 15px;
+	border-radius: 0;
 }
 
-
-/* Rodapé */
-
-footer {
-    background-color: cadetblue;
-    height: 100px;
-    border-top: 2px solid rgb(115, 123, 126);
-    position: relative;
+#contact-form .main-btn {
+	width: 120px;
+	height: 50px;
 }
 
-footer p {
-    color: #333;
-    text-align: center;
-    top: 50%;
-    position: relative;
+#contact-form .main-btn:hover {
+	color: #3EC1D5;
 }
-

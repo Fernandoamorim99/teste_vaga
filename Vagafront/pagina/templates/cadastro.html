@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% if msg %}
-
-{% endif %}
-
 
 {% block title %} Cadastro {% endblock %}
 
@@ -11,7 +7,7 @@
 
     <div id="main-container">
         <h1>Cadastro de novo paciente</h1>
-        <form id="register-form" action="{% url 'cadastro' %}" method="post">
+        <form id="register-form" action="/Cadastro/" method="post">
             {% csrf_token %}
             <div class="full-box">
                 <label for="email">E-mail</label>
@@ -26,7 +22,7 @@
                 <input id="cpf" type="text" name="cpf" autocomplete="off" placeholder="Digite seu CPF">
             </div>
             <div class="half-box">
-                <label for="cpf">Telefone</label>
+                <label for="phone">Telefone</label>
                 <input id="phone" type="text" name="phone" autocomplete="off" placeholder="Digite seu Telefone">
             </div>
             <div class="half-box spacing">
@@ -46,5 +42,4 @@
             </div>
         </form>
     </div>
-    <p class="error-validation template"></p>
 {% endblock %}

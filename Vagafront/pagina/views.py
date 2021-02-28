@@ -6,46 +6,103 @@ from urllib.request import urlopen
 import json
 
 def inicio (request):
-    return render(request,"inicio.html")
+    mensagem = ""
+    return render(request,"inicio.html",{'msg': mensagem})
 
 
 def cadastro (request):
+    mensagem = None
+    status_msn = 1
     url = "http://api.teste.vallions.com.br:7000/api/user"
     name = request.POST.get('name')
     email = request.POST.get('email')
     senha = request.POST.get('password')
+    conf = request.POST.get('passconfirm')
     telefone = request.POST.get('phone')
     cpf = request.POST.get('cpf')
-    if name or email or senha or telefone or cpf == None:
-        mensagem = "Revise as informações e tente novamente!"
+    print(name,email,cpf)
+    if name == None:
+        name = ""
+        status_msn -= 1
+    else:
+        if email == None:
+            email = ""
+            status_msn -= 1
+        else:
+            if senha == None:
+                senha = ""
+                status_msn -= 1
+            else:
+                if conf == None:
+                    conf = ""
+                    status_msn -= 1
+                else:
+                    if telefone == None:
+                        telefone = ""
+                        status_msn -= 1
+                    else:
+                        if cpf == None:
+                            cpf = ""
+                            status_msn -= 1
+    if status_msn <= 0:
+        mensagem = ""
+        print("None")
         return render(request,"cadastro.html",{'msg': mensagem})
     else:
-        payload = {
-        'name': str(name),
-        'email':str(email),
-        'password':str(senha),
-        'phone':str(telefone),
-        'cpf':str(cpf),
-        }
-        headers= {}
-
-        response = requests.post(url, headers=headers, data = payload)
-
-        response.text.encode('utf8')
-        print(response)
-        if response == "<Response [200]>":
-            mensagem = "Cadastro concluido!"
-            return render(request,"inicio.html",{'msg': mensagem})
-        else:
-            mensagem = "Erro no cadastro, Tente novamente mais Tarde!"
+        if name == "":
+            mensagem = "Erro no cadastro, Preencha o campo Nome!"
+            print("Erro no cadastro, Preencha o campo Nome!")
             return render(request,"cadastro.html",{'msg': mensagem})
-    return render(request,"cadastro.html")
+        else:
+            if email == "":
+                mensagem = "Erro no cadastro, Preencha o campo E-mail!"
+                print("Erro no cadastro, Preencha o campo E-mail!!")
+                return render(request,"cadastro.html",{'msg': mensagem})
+            else:
+                if cpf == "":
+                    mensagem = "Erro no cadastro, Preencha o campo CPF!"
+                    print("Erro no cadastro, Preencha o campo CPF!")
+                    return render(request,"cadastro.html",{'msg': mensagem})
+                else:
+                    if telefone == "":
+                        mensagem = "Erro no cadastro, Preencha o campo Telefone!"
+                        print("Erro no cadastro, Preencha o campo Telefone!")
+                        return render(request,"cadastro.html",{'msg': mensagem})
+                    else:
+                        if senha == "":
+                            mensagem = "Erro no cadastro, Preencha o campo Senha!"
+                            print("Erro no cadastro, Preencha o campo Senha!")
+                            return render(request,"cadastro.html",{'msg': mensagem})
+                        else:
+                            if conf == "":
+                                mensagem = "Erro no cadastro, Preencha o campo de confirmação de Senha!"
+                                print("Erro no cadastro, Preencha o campo de confirmação de Senha!")
+                                return render(request,"cadastro.html",{'msg': mensagem})
+                            else:
+                                if senha == conf:
+                                    payload = {
+                                    'name': str(name),
+                                    'email':str(email),
+                                    'password':str(senha),
+                                    'phone':str(telefone),
+                                    'cpf':str(cpf),
+                                    }
+                                    headers= {}
+                                    response = requests.post(url, headers=headers, data = payload)
+                                    response.text.encode('utf8')
+                                    print("Cadastrado")
+                                else:
+                                    mensagem = "Senhas não correspondem!"
+                                    print("Senhas não correspondem!")
+                                    return render(request,"cadastro.html",{'msg': mensagem})
+    return render(request,"cadastro.html",{'msg': mensagem})
 
 
 def usuarios (request):
     page = {}
     comp1 = []
     comp2 = []
+    mensagem = ""
     url = "http://api.teste.vallions.com.br:7000/api/users"
     payload = {}
     headers= {}
@@ -87,8 +144,6 @@ def usuarios (request):
                 comp1 = []
                 comp2 = []
 
-    return render(request,"usuarios.html",{"data":response})
+    return render(request,"usuarios.html",{"data":response, 'msg': mensagem})
 
 
-def contato (request):
-    return render(request,"contato.html")

@@ -1,4 +1,9 @@
-{% load staticfiles %}
+{% load static %}
+    {% if msg != "" %}
+    <script>
+        alert('{{ msg }}');
+    </script>
+    {% endif %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +11,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/92c7e09626.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static '/Js/scripts.js' %}"></script>
+
     
 </head>
 <body>
@@ -22,13 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'usuarios' %}">Lista de Pacientes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'cadastro' %}">Novo Cadastro</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'contato' %}">Contato</a>
                     </li>
                 </ul>
                 </div>
@@ -38,12 +46,52 @@
         {% block content %}{% endblock %}
 
         <footer>
-            <p> Vallions Soluções </p>
+            <div id="contact-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    <h3 class="main-title">Entre em contato conosco</h3>
+                    </div>
+                    <div class="col-md-4 contact-box">
+                    <i class="fas fa-phone"></i>
+                    <p><span class="contact-tile">Ligue para:</span> (43)3028-6213</p>
+                    <p><span class="contact-tile">Horários:</span> 8:00 - 18:00</p>
+                    </div>
+                    <div class="col-md-4 contact-box">
+                    <i class="fas fa-envelope"></i>
+                    <p><span class="contact-tile">Envie um email:</span> contato@vallions.com.br</p>
+                    </div>
+                    <div class="col-md-4 contact-box">
+                    <i class="fab fa-instagram"></i>
+                    <p><span class="contact-tile">Nossas redes Socias:</span>@Vallionsoficial</p>
+                    </div>
+                    <div class="col-md-6" id="msg-box">
+                    <p>Enviei sua Duvida:</p>
+                    </div>
+                    <div class="col-md-6" id="contact-form">
+                    <form action="">
+                        <input type="text" class="form-control" placeholder="E-mail" name="email">
+                        <input type="text" class="form-control" placeholder="Assunto" name="subject">
+                        <textarea class="form-control" rows="3" placeholder="Sua mensagem..." name="message"></textarea>
+                        <input type="submit" class="main-btn">
+                    </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div id="copy-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    <p>Desenvolvido por <a href="https://www.vallions.com.br" target="_blank">Vallions Soluções</a> &copy; 2021</p>
+                    </div>
+                </div>
+            </div>
+            </div>
         </footer>
     </div>
+
     
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
-    <script src="{% static 'static/js/scripts.js' %}"></script>
 
     
 </body>
