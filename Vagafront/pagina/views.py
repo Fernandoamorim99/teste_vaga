@@ -11,7 +11,7 @@ def inicio (request):
 
 
 def cadastro (request):
-    mensagem = None
+    mensagem = ""
     status_msn = 1
     url = "http://api.teste.vallions.com.br:7000/api/user"
     name = request.POST.get('name')
@@ -90,11 +90,13 @@ def cadastro (request):
                                     headers= {}
                                     response = requests.post(url, headers=headers, data = payload)
                                     response.text.encode('utf8')
-                                    print("Cadastrado")
+                                    mensagem = "Cadastro Concluido!"
+                                    print("Cadastro Concluido!")
+                                    return render(request,"inicio.html",{'msg': mensagem})
                                 else:
                                     mensagem = "Senhas não correspondem!"
                                     print("Senhas não correspondem!")
-                                    return render(request,"cadastro.html",{'msg': mensagem})
+                                    return render(request,"usuarios.html",{'msg': mensagem})
     return render(request,"cadastro.html",{'msg': mensagem})
 
 
